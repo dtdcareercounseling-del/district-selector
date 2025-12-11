@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Join WhatsApp Group</title>
+<style>
+body {
+    font-family: Arial;
+    background: #ffffff;
+    text-align: center;
+    padding: 40px;
+}
+img {
+    max-width: 80%;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+button {
+    background: #28a745;
+    color: white;
+    padding: 14px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+button:hover {
+    background: #1f7e34;
+}
+</style>
+</head>
+<body>
+
+<h2 id="title"></h2>
+
+<img src="your-image.jpg" alt="Publicity Image">
+
+<br><br>
+
+<button id="joinBtn">Join WhatsApp Group</button>
+
+<script>
+// Mapping WhatsApp links
+const links = {
+    "pune": "https://chat.whatsapp.com/YourPuneLink",
+    "mumbai": "https://chat.whatsapp.com/YourMumbaiLink",
+    "nagpur": "https://chat.whatsapp.com/YourNagpurLink",
+    "nashik": "https://chat.whatsapp.com/YourNashikLink"
+};
+
+// Get district from URL
+const params = new URLSearchParams(window.location.search);
+const district = params.get("district");
+
+document.getElementById("title").innerText = 
+    "District: " + district.charAt(0).toUpperCase() + district.slice(1);
+
+document.getElementById("joinBtn").onclick = function() {
+    window.location.href = links[district];
+};
+</script>
+
+</body>
+</html>
