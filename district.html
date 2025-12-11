@@ -1,64 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Join WhatsApp Group</title>
 <style>
-body {
-    font-family: Arial;
-    background: #ffffff;
-    text-align: center;
-    padding: 40px;
-}
-img {
-    max-width: 80%;
-    border-radius: 15px;
-    margin-bottom: 30px;
-}
-button {
-    background: #28a745;
-    color: white;
-    padding: 14px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-button:hover {
-    background: #1f7e34;
-}
+  :root{
+    --accent:#28a745;
+    --accent-dark:#1f7e34;
+    --max-width:1100px;
+  }
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#fff;
+    color:#111;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:var(--max-width);
+    padding:28px;
+    box-sizing:border-box;
+    text-align:center;
+  }
+
+  h1{
+    font-size:28px;
+    margin:8px 0 18px;
+  }
+
+  .join-btn{
+    display:inline-block;
+    background:var(--accent);
+    color:white;
+    padding:14px 26px;
+    font-size:18px;
+    border-radius:10px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    transition:background .15s ease;
+    margin-bottom:20px;
+  }
+  .join-btn:active{ transform:translateY(1px); }
+  .join-btn:hover{ background:var(--accent-dark); }
+
+  /* image container that fills width and keeps aspect ratio */
+  .img-wrap{
+    width:100%;
+    margin-top:20px;
+  }
+  .img-wrap img{
+    width:100%;
+    height:auto;            /* maintain aspect ratio */
+    display:block;
+    border-radius:8px;
+    object-fit:cover;
+  }
+
+  /* Optional: make image take almost full viewport height on large screens */
+  @media (min-width:900px){
+    .img-wrap img{
+      height: calc(100vh - 220px); /* adjust if you want larger or smaller */
+      object-fit:cover;
+    }
+  }
+
+  /* small note under button (optional) */
+  .note{
+    margin-top:12px;
+    color:#555;
+    font-size:14px;
+  }
 </style>
 </head>
 <body>
+  <div class="wrap">
+    <h1 id="title">District: Pune</h1>
 
-<h2 id="title"></h2>
+    <!-- Join button -->
+    <a id="joinBtn" class="join-btn" href="#" target="_blank" rel="noopener noreferrer">Join WhatsApp Group</a>
+    <div class="note">Click the green button to open the WhatsApp group (opens in WhatsApp or browser).</div>
 
-<img src="publicity.png" alt="Publicity Image">
-
-<br><br>
-
-<button id="joinBtn">Join WhatsApp Group</button>
+    <!-- Full-width publicity image -->
+    <div class="img-wrap">
+      <!-- Make sure file name exactly matches the one in your repo (publicity.png) -->
+      <img id="publicityImg" src="publicity.png" alt="Publicity Image">
+    </div>
+  </div>
 
 <script>
-// Mapping WhatsApp links
-const links = {
+  // Replace these with your real WhatsApp links
+  const links = {
     "pune": "https://chat.whatsapp.com/YourPuneLink",
     "mumbai": "https://chat.whatsapp.com/YourMumbaiLink",
     "nagpur": "https://chat.whatsapp.com/YourNagpurLink",
     "nashik": "https://chat.whatsapp.com/YourNashikLink"
-};
+  };
 
-// Get district from URL
-const params = new URLSearchParams(window.location.search);
-const district = params.get("district");
+  // Get district from URL (index.html -> district.html?district=pune)
+  const params = new URLSearchParams(window.location.search);
+  const district = (params.get('district') || 'pune').toLowerCase();
 
-document.getElementById("title").innerText = 
-    "District: " + district.charAt(0).toUpperCase() + district.slice(1);
+  // Set title and join link
+  const title = document.getElementById('title');
+  title.innerText = 'District: ' + district.charAt(0).toUpperCase() + district.slice(1);
 
-document.getElementById("joinBtn").onclick = function() {
-    window.location.href = links[district];
-};
+  const joinBtn = document.getElementById('joinBtn');
+  if (links[district]) {
+    joinBtn.href = links[district];
+  } else {
+    joinBtn.href = '#';
+    joinBtn.onclick = function(){ alert('WhatsApp group link not configured for this district.'); }
+  }
+
+  // If your publicity file is stored inside a folder (e.g., /images/publicity.png),
+  // update the <img src="..."> to that path accordingly.
 </script>
-
 </body>
 </html>
