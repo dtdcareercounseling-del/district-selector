@@ -2,29 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Select District - WhatsApp Group</title>
+<title>Select District</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f8f9fa;
-        padding: 40px;
-        text-align: center;
-    }
-    select, button {
-        padding: 12px;
-        font-size: 18px;
-        margin-top: 20px;
-        border-radius: 8px;
-    }
-    button {
-        background: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-        background: #0056b3;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    text-align: center;
+    padding: 40px;
+}
+select, button {
+    padding: 12px;
+    font-size: 18px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background: #0056b3;
+}
 </style>
 </head>
 <body>
@@ -37,34 +37,22 @@
     <option value="mumbai">Mumbai</option>
     <option value="nagpur">Nagpur</option>
     <option value="nashik">Nashik</option>
-    <!-- Add more districts here -->
 </select>
 
 <br>
 
-<button onclick="joinGroup()">Join WhatsApp Group</button>
+<button onclick="goToDistrict()">Continue</button>
 
 <script>
-function joinGroup() {
+function goToDistrict() {
     const district = document.getElementById("districtSelect").value;
-
-    // WhatsApp group links mapping
-    const links = {
-        "pune": "https://chat.whatsapp.com/YourPuneLink",
-        "mumbai": "https://chat.whatsapp.com/YourMumbaiLink",
-        "nagpur": "https://chat.whatsapp.com/YourNagpurLink",
-        "nashik": "https://chat.whatsapp.com/YourNashikLink"
-        // Add all remaining districts here
-    };
-
-    if (district && links[district]) {
-        window.location.href = links[district];  
-    } else {
+    if (!district) {
         alert("Please select a district");
+        return;
     }
+    window.location.href = "district.html?district=" + district;
 }
 </script>
 
 </body>
 </html>
-
