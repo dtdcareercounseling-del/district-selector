@@ -63,13 +63,12 @@
     object-fit:cover;
   }
 
-  /* Optional: make image take almost full viewport height on large screens */
-  @media (min-width:900px){
-    .img-wrap img{
-      height: calc(100vh - 220px); /* adjust if you want larger or smaller */
-      object-fit:cover;
-    }
-  }
+.img-wrap img {
+    width: 100%;
+    height: auto;    /* KEEP natural height */
+    object-fit: contain !important;
+}
+
 
   /* small note under button (optional) */
   .note{
