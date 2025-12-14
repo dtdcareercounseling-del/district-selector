@@ -1,137 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Join WhatsApp Group</title>
+
 <style>
-  :root{
-    --accent:#28a745;
-    --accent-dark:#1f7e34;
-    --max-width:1100px;
-  }
-  body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#fff;
-    color:#111;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    min-height:100vh;
-  }
-
-  .wrap{
-    width:100%;
-    max-width:var(--max-width);
-    padding:28px;
-    box-sizing:border-box;
-    text-align:center;
-  }
-
-  h1{
-    font-size:28px;
-    margin:8px 0 18px;
-  }
-
-  .join-btn{
-    display:inline-block;
-    background:var(--accent);
-    color:white;
-    padding:14px 26px;
-    font-size:18px;
-    border-radius:10px;
-    text-decoration:none;
-    border:none;
-    cursor:pointer;
-    transition:background .15s ease;
-    margin-bottom:20px;
-  }
-  .join-btn:active{ transform:translateY(1px); }
-  .join-btn:hover{ background:var(--accent-dark); }
-
-  /* image container that fills width and keeps aspect ratio */
-  .img-wrap{
-    width:100%;
-    margin-top:20px;
-  }
-  .img-wrap img{
-    width:100%;
-    height:auto;            /* maintain aspect ratio */
-    display:block;
-    border-radius:8px;
-    object-fit:cover;
-  }
-
-.img-wrap img {
-    width: 100%;
-    height: auto;    /* KEEP natural height */
-    object-fit: contain !important;
+:root{
+  --accent:#28a745;
+  --accent-dark:#1f7e34;
+  --max-width:1100px;
 }
 
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#ffffff;
+  color:#111;
+  display:flex;
+  justify-content:center;
+}
 
-  /* small note under button (optional) */
-  .note{
-    margin-top:12px;
-    color:#555;
-    font-size:14px;
-  }
+.wrap{
+  width:100%;
+  max-width:var(--max-width);
+  padding:24px;
+  box-sizing:border-box;
+  text-align:center;
+}
+
+h1{
+  font-size:28px;
+  margin-bottom:18px;
+}
+
+/* WhatsApp button */
+.join-btn{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  padding:14px 28px;
+  font-size:18px;
+  border-radius:10px;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+  transition:background .15s ease;
+}
+
+.join-btn:hover{
+  background:var(--accent-dark);
+}
+
+.note{
+  margin-top:12px;
+  font-size:14px;
+  color:#555;
+}
+
+/* Image section */
+.img-wrap{
+  width:100%;
+  margin-top:24px;
+}
+
+.img-wrap img{
+  width:100%;
+  height:auto;              /* full image visible */
+  display:block;
+  border-radius:10px;
+  object-fit:contain;       /* NO cropping */
+}
 </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <h1 id="title">District: Pune</h1>
 
-    <!-- Join button -->
-    <a id="joinBtn" class="join-btn" href="#" target="_blank" rel="noopener noreferrer">Join WhatsApp Group</a>
-    <div class="note">Click the green button to open the WhatsApp group (opens in WhatsApp or browser).</div>
+<div class="wrap">
 
-    <!-- Full-width publicity image -->
-    <div class="img-wrap">
-      <!-- Make sure file name exactly matches the one in your repo (publicity.png) -->
-      <img id="publicityImg" src="publicity.png" alt="Publicity Image">
-    </div>
+  <h1 id="title">District</h1>
+
+  <a id="joinBtn" class="join-btn" href="#" target="_blank" rel="noopener">
+    Join WhatsApp Group
+  </a>
+
+  <div class="note">
+    Click the green button to open the WhatsApp group
   </div>
 
+  <div class="img-wrap">
+    <!-- Ensure this file exists in the same folder -->
+    <img src="publicity.png" alt="Publicity Image">
+  </div>
+
+</div>
+
 <script>
-  // Replace these with your real WhatsApp links
-  const links = {
-    "Ahilyanagar": "https://chat.whatsapp.com/BsXZG1SEFOAJTg18hf8XlP",
-    "Dharashiv": "https://chat.whatsapp.com/K76FnLfOoirIdK386Ycsbv",
-    "Dhule": "https://chat.whatsapp.com/EGlInaZc3nkLjo9FCQKX1V",
-    "Jalgaon": "https://chat.whatsapp.com/HfzZUTC6YDS2p1KceILQXN",
-    "Kolhapur": "https://chat.whatsapp.com/GsLcAHkNIJbGOASPF05kpN",
-    "Latur": "https://chat.whatsapp.com/GQ4X1Gnuw7jFyjCHfwBVvE",
-    "Nanded": "https://chat.whatsapp.com/IUSsg4EK21CF79tSJwwyOx",
-    "Nandurbar": "https://chat.whatsapp.com/JyhcYmqoM9945HCGtQHAgk",
-    "Nashik": "https://chat.whatsapp.com/Doj8ak2fcQ11sDn7FvaNsB",
-    "Pune": "https://chat.whatsapp.com/CoLOaJULaRv5IoOlSqeGxv",
-    "Ratnagiri": "https://chat.whatsapp.com/He1JEuNuunZ308xZy57Q1C",
-    "Sangli": "https://chat.whatsapp.com/DVIpBOqPdKREotpMrO2smr",
-    "Satara": "https://chat.whatsapp.com/GLi4D0Zjj7RIf33pmhhOy3",
-    "Sindhudurg": "https://chat.whatsapp.com/Ct8jyVcn763AcxX0ZSgzPv",
-    "Solapur": "https://chat.whatsapp.com/DVIpBOqPdKREotpMrO2smr",
-    "Other": "https://chat.whatsapp.com/IBSS9vnAEotG2tUnwTybBA"
-  };
+/* ===============================
+   WHATSAPP LINKS (LOWERCASE KEYS)
+================================ */
+const links = {
+  "ahilyanagar": "https://chat.whatsapp.com/BsXZG1SEFOAJTg18hf8XlP",
+  "dharashiv": "https://chat.whatsapp.com/K76FnLfOoirIdK386Ycsbv",
+  "dhule": "https://chat.whatsapp.com/EGlInaZc3nkLjo9FCQKX1V",
+  "jalgaon": "https://chat.whatsapp.com/HfzZUTC6YDS2p1KceILQXN",
+  "kolhapur": "https://chat.whatsapp.com/GsLcAHkNIJbGOASPF05kpN",
+  "latur": "https://chat.whatsapp.com/GQ4X1Gnuw7jFyjCHfwBVvE",
+  "nanded": "https://chat.whatsapp.com/IUSsg4EK21CF79tSJwwyOx",
+  "nandurbar": "https://chat.whatsapp.com/JyhcYmqoM9945HCGtQHAgk",
+  "nashik": "https://chat.whatsapp.com/Doj8ak2fcQ11sDn7FvaNsB",
+  "pune": "https://chat.whatsapp.com/CoLOaJULaRv5IoOlSqeGxv",
+  "ratnagiri": "https://chat.whatsapp.com/He1JEuNuunZ308xZy57Q1C",
+  "sangli": "https://chat.whatsapp.com/DVIpBOqPdKREotpMrO2smr",
+  "satara": "https://chat.whatsapp.com/GLi4D0Zjj7RIf33pmhhOy3",
+  "sindhudurg": "https://chat.whatsapp.com/Ct8jyVcn763AcxX0ZSgzPv",
+  "solapur": "https://chat.whatsapp.com/DVIpBOqPdKREotpMrO2smr",
+  "other": "https://chat.whatsapp.com/IBSS9vnAEotG2tUnwTybBA"
+};
 
-  // Get district from URL (index.html -> district.html?district=pune)
-  const params = new URLSearchParams(window.location.search);
-  const district = (params.get('district') || 'pune').toLowerCase();
+/* ===============================
+   READ DISTRICT FROM URL
+================================ */
+const params = new URLSearchParams(window.location.search);
+const district = (params.get("district") || "").toLowerCase();
 
-  // Set title and join link
-  const title = document.getElementById('title');
-  title.innerText = 'District: ' + district.charAt(0).toUpperCase() + district.slice(1);
+const title = document.getElementById("title");
+const joinBtn = document.getElementById("joinBtn");
 
-  const joinBtn = document.getElementById('joinBtn');
-  if (links[district]) {
-    joinBtn.href = links[district];
-  } else {
-    joinBtn.href = '#';
-    joinBtn.onclick = function(){ alert('WhatsApp group link not configured for this district.'); }
-  }
+/* ===============================
+   APPLY DATA
+================================ */
+if (links[district]) {
+  title.innerText =
+    "District: " + district.charAt(0).toUpperCase() + district.slice(1);
 
-  // If your publicity file is stored inside a folder (e.g., /images/publicity.png),
-  // update the <img src="..."> to that path accordingly.
+  joinBtn.href = links[district];
+} else {
+  title.innerText = "District Not Available";
+  joinBtn.style.display = "none";
+  alert("WhatsApp group link not configured for this district.");
+}
 </script>
+
 </body>
 </html>
