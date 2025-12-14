@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Select District</title>
 
 <style>
@@ -25,48 +27,85 @@ body {
 }
 
 select, button {
-    padding: 12px;
-    font-size: 18px;
-    margin-top: 20px;
-    border-radius: 8px;
+  padding: 12px;
+  font-size: 18px;
+  margin-top: 20px;
+  border-radius: 8px;
 }
 
 button {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
 button:hover {
-    background: #0056b3;
+  background: #0056b3;
+}
+
+/* Welcome box */
+.welcome-box{
+  max-width:700px;
+  margin:0 auto 25px;
+  padding:20px;
+  background:rgba(255,255,255,0.12);
+  border-radius:12px;
+  backdrop-filter: blur(4px);
+}
+
+.welcome-box h1{
+  margin:0 0 10px;
+  font-size:26px;
+}
+
+.welcome-box p{
+  margin:6px 0;
+  font-size:16px;
+  line-height:1.5;
+}
+
+.sub-text{
+  font-size:14px;
+  opacity:0.9;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ✅ WELCOME SECTION -->
+<div class="welcome-box">
+  <h1>Welcome Students 👋</h1>
+  <p>
+    Get district-wise WhatsApp updates for  
+    <strong>MHT-CET admissions, CAP rounds & career guidance</strong>.
+  </p>
+  <p class="sub-text">
+    Please select your district to join the correct WhatsApp group.
+  </p>
+</div>
+
 <h2>Select Your District</h2>
 
 <select id="districtSelect">
-    <option value="" selected disabled>-- Choose District --</option>
-
-    <option value="ahilyanagar">Ahilyanagar</option>
-    <option value="dharashiv">Dharashiv</option>
-    <option value="dhule">Dhule</option>
-    <option value="jalgaon">Jalgaon</option>
-    <option value="kolhapur">Kolhapur</option>
-    <option value="latur">Latur</option>
-    <option value="nanded">Nanded</option>
-    <option value="nandurbar">Nandurbar</option>
-    <option value="nashik">Nashik</option>
-    <option value="pune">Pune</option>
-    <option value="ratnagiri">Ratnagiri</option>
-    <option value="sangli">Sangli</option>
-    <option value="satara">Satara</option>
-    <option value="sindhudurg">Sindhudurg</option>
-    <option value="solapur">Solapur</option>
-    <option value="other">Other</option>
+  <option value="" selected disabled>-- Choose District --</option>
+  <option value="ahilyanagar">Ahilyanagar</option>
+  <option value="dharashiv">Dharashiv</option>
+  <option value="dhule">Dhule</option>
+  <option value="jalgaon">Jalgaon</option>
+  <option value="kolhapur">Kolhapur</option>
+  <option value="latur">Latur</option>
+  <option value="nanded">Nanded</option>
+  <option value="nandurbar">Nandurbar</option>
+  <option value="nashik">Nashik</option>
+  <option value="pune">Pune</option>
+  <option value="ratnagiri">Ratnagiri</option>
+  <option value="sangli">Sangli</option>
+  <option value="satara">Satara</option>
+  <option value="sindhudurg">Sindhudurg</option>
+  <option value="solapur">Solapur</option>
+  <option value="other">Other</option>
 </select>
 
 <br>
@@ -75,15 +114,15 @@ button:hover {
 
 <script>
 function goToDistrict() {
-    const district = document.getElementById("districtSelect").value;
+  const district = document.getElementById("districtSelect").value;
 
-    if (!district) {
-        alert("Please select a district");
-        return;
-    }
+  if (!district) {
+    alert("Please select a district");
+    return;
+  }
 
-    // encodeURIComponent = safety best practice
-    window.location.href = "district.html?district=" + encodeURIComponent(district);
+  window.location.href =
+    "district.html?district=" + encodeURIComponent(district);
 }
 </script>
 
