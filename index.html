@@ -6,17 +6,22 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+  color: white;
 
-    /* Background image with dark overlay */
-    background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url('background.jpg') no-repeat center center;
+  background-size: cover;
+}
 
-    text-align: center;
-    padding: 40px;
-    color: white;
+/* Mobile optimization */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 select, button {
