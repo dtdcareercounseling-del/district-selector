@@ -30,6 +30,26 @@ body{
   text-align:center;
 }
 
+/* Language toggle */
+.lang-toggle{
+  text-align:right;
+  margin-bottom:10px;
+}
+
+.lang-toggle button{
+  padding:6px 12px;
+  margin-left:6px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  background:#f1f1f1;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.lang-toggle button:hover{
+  background:#ddd;
+}
+
 h1{
   font-size:28px;
   margin-bottom:18px;
@@ -67,10 +87,10 @@ h1{
 
 .img-wrap img{
   width:100%;
-  height:auto;              /* full image visible */
+  height:auto;          /* full image visible */
   display:block;
   border-radius:10px;
-  object-fit:contain;       /* NO cropping */
+  object-fit:contain;   /* NO cropping */
 }
 </style>
 </head>
@@ -79,18 +99,27 @@ h1{
 
 <div class="wrap">
 
+  <!-- Language toggle -->
+  <div class="lang-toggle">
+    <button onclick="setLang('en')">English</button>
+    <button onclick="setLang('mr')">मराठी</button>
+  </div>
+
+  <!-- District title -->
   <h1 id="title">District</h1>
 
+  <!-- Join button -->
   <a id="joinBtn" class="join-btn" href="#" target="_blank" rel="noopener">
     Join WhatsApp Group
   </a>
 
-  <div class="note">
+  <!-- Note -->
+  <div class="note" id="noteText">
     Click the green button to open the WhatsApp group
   </div>
 
+  <!-- Publicity image -->
   <div class="img-wrap">
-    <!-- Ensure this file exists in the same folder -->
     <img src="publicity.png" alt="Publicity Image">
   </div>
 
@@ -98,7 +127,23 @@ h1{
 
 <script>
 /* ===============================
-   WHATSAPP LINKS (LOWERCASE KEYS)
+   LANGUAGE TEXT
+================================ */
+const text = {
+  en: {
+    title: "District: ",
+    button: "Join WhatsApp Group",
+    note: "Click the green button to open the WhatsApp group"
+  },
+  mr: {
+    title: "जिल्हा: ",
+    button: "WhatsApp ग्रुप जॉईन करा",
+    note: "हिरव्या बटणावर क्लिक करून WhatsApp ग्रुप उघडा"
+  }
+};
+
+/* ===============================
+   WHATSAPP LINKS (lowercase keys)
 ================================ */
 const links = {
   "ahilyanagar": "https://chat.whatsapp.com/BsXZG1SEFOAJTg18hf8XlP",
@@ -125,22 +170,36 @@ const links = {
 const params = new URLSearchParams(window.location.search);
 const district = (params.get("district") || "").toLowerCase();
 
-const title = document.getElementById("title");
+const titleEl = document.getElementById("title");
 const joinBtn = document.getElementById("joinBtn");
+const noteEl = document.getElementById("noteText");
 
 /* ===============================
-   APPLY DATA
+   APPLY DISTRICT
 ================================ */
 if (links[district]) {
-  title.innerText =
-    "District: " + district.charAt(0).toUpperCase() + district.slice(1);
-
   joinBtn.href = links[district];
 } else {
-  title.innerText = "District Not Available";
+  titleEl.innerText = "District Not Available";
   joinBtn.style.display = "none";
   alert("WhatsApp group link not configured for this district.");
 }
+
+/* ===============================
+   LANGUAGE SWITCH
+================================ */
+function setLang(lang){
+  localStorage.setItem("lang", lang);
+  titleEl.innerText =
+    text[lang].title +
+    district.charAt(0).toUpperCase() + district.slice(1);
+  joinBtn.innerText = text[lang].button;
+  noteEl.innerText = text[lang].note;
+}
+
+/* Load saved language (default Marathi) */
+const savedLang = localStorage.getItem("lang") || "mr";
+setLang(savedLang);
 </script>
 
 </body>
