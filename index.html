@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Select District</title>
+
 <style>
 body {
     font-family: Arial, sans-serif;
 
-    /* Background image */
+    /* Background image with dark overlay */
     background:
         linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
         url('background.jpg') no-repeat center center fixed;
@@ -17,45 +18,50 @@ body {
     padding: 40px;
     color: white;
 }
+
 select, button {
     padding: 12px;
     font-size: 18px;
     margin-top: 20px;
     border-radius: 8px;
 }
+
 button {
     background: #007bff;
     color: #fff;
     border: none;
     cursor: pointer;
 }
+
 button:hover {
     background: #0056b3;
 }
 </style>
 </head>
+
 <body>
 
 <h2>Select Your District</h2>
 
 <select id="districtSelect">
     <option value="" selected disabled>-- Choose District --</option>
-    <option value="Ahilyanagar">Ahilyanagar</option>
-    <option value="Dharashiv">Dharashiv</option>
-    <option value="Dhule">Dhule</option>
-    <option value="Jalgaon">Jalgaon</option>
-    <option value="Kolhapur">Kolhapur</option>
-    <option value="Latur">Latur</option>
-    <option value="Nanded">Nanded</option>
-    <option value="Nandurbar">Nandurbar</option>
-    <option value="Nashik">Nashik</option>
-    <option value="Pune">Pune</option>
-    <option value="Ratnagiri">Ratnagiri</option>
-    <option value="Sangli">Sangli</option>
-    <option value="Satara">Satara</option>
-    <option value="Sindhudurg">Sindhudurg</option>
-    <option value="Solapur">Solapur</option>
-    <option value="Other">Other</option>
+
+    <option value="ahilyanagar">Ahilyanagar</option>
+    <option value="dharashiv">Dharashiv</option>
+    <option value="dhule">Dhule</option>
+    <option value="jalgaon">Jalgaon</option>
+    <option value="kolhapur">Kolhapur</option>
+    <option value="latur">Latur</option>
+    <option value="nanded">Nanded</option>
+    <option value="nandurbar">Nandurbar</option>
+    <option value="nashik">Nashik</option>
+    <option value="pune">Pune</option>
+    <option value="ratnagiri">Ratnagiri</option>
+    <option value="sangli">Sangli</option>
+    <option value="satara">Satara</option>
+    <option value="sindhudurg">Sindhudurg</option>
+    <option value="solapur">Solapur</option>
+    <option value="other">Other</option>
 </select>
 
 <br>
@@ -65,11 +71,14 @@ button:hover {
 <script>
 function goToDistrict() {
     const district = document.getElementById("districtSelect").value;
+
     if (!district) {
         alert("Please select a district");
         return;
     }
-    window.location.href = "district.html?district=" + district;
+
+    // encodeURIComponent = safety best practice
+    window.location.href = "district.html?district=" + encodeURIComponent(district);
 }
 </script>
 
