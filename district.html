@@ -30,26 +30,6 @@ body{
   text-align:center;
 }
 
-/* Language toggle */
-.lang-toggle{
-  text-align:right;
-  margin-bottom:10px;
-}
-
-.lang-toggle button{
-  padding:6px 12px;
-  margin-left:6px;
-  border-radius:6px;
-  border:1px solid #ccc;
-  background:#f1f1f1;
-  cursor:pointer;
-  font-size:14px;
-}
-
-.lang-toggle button:hover{
-  background:#ddd;
-}
-
 h1{
   font-size:28px;
   margin-bottom:18px;
@@ -87,10 +67,10 @@ h1{
 
 .img-wrap img{
   width:100%;
-  height:auto;          /* full image visible */
+  height:auto;
   display:block;
   border-radius:10px;
-  object-fit:contain;   /* NO cropping */
+  object-fit:contain;
 }
 </style>
 </head>
@@ -98,12 +78,6 @@ h1{
 <body>
 
 <div class="wrap">
-
-  <!-- Language toggle -->
-  <div class="lang-toggle">
-    <button onclick="setLang('en')">English</button>
-    <button onclick="setLang('mr')">मराठी</button>
-  </div>
 
   <!-- District title -->
   <h1 id="title">District</h1>
@@ -124,41 +98,10 @@ h1{
   </div>
 
 </div>
-  
-<script>
-  const joinBtn = document.getElementById("joinBtn");
-
-  if (joinBtn) {
-    joinBtn.addEventListener("click", function () {
-      // WhatsApp opens via href
-      // Redirect to follow page after 2 seconds
-      setTimeout(function () {
-        window.location.href = "follow.html";
-      }, 2000);
-    });
-  }
-</script>
-
 
 <script>
 /* ===============================
-   LANGUAGE TEXT
-================================ */
-const text = {
-  en: {
-    title: "District: ",
-    button: "Join WhatsApp Group",
-    note: "Click the green button to open the WhatsApp group"
-  },
-  mr: {
-    title: "जिल्हा: ",
-    button: "WhatsApp ग्रुप जॉईन करा",
-    note: "हिरव्या बटणावर क्लिक करून WhatsApp ग्रुप उघडा"
-  }
-};
-
-/* ===============================
-   WHATSAPP LINKS (lowercase keys)
+   WHATSAPP LINKS
 ================================ */
 const links = {
   "ahilyanagar": "https://chat.whatsapp.com/BsXZG1SEFOAJTg18hf8XlP",
@@ -187,12 +130,13 @@ const district = (params.get("district") || "").toLowerCase();
 
 const titleEl = document.getElementById("title");
 const joinBtn = document.getElementById("joinBtn");
-const noteEl = document.getElementById("noteText");
 
 /* ===============================
    APPLY DISTRICT
 ================================ */
 if (links[district]) {
+  const prettyName = district.charAt(0).toUpperCase() + district.slice(1);
+  titleEl.innerText = "District: " + prettyName;
   joinBtn.href = links[district];
 } else {
   titleEl.innerText = "District Not Available";
@@ -201,20 +145,13 @@ if (links[district]) {
 }
 
 /* ===============================
-   LANGUAGE SWITCH
+   REDIRECT AFTER CLICK
 ================================ */
-function setLang(lang){
-  localStorage.setItem("lang", lang);
-  titleEl.innerText =
-    text[lang].title +
-    district.charAt(0).toUpperCase() + district.slice(1);
-  joinBtn.innerText = text[lang].button;
-  noteEl.innerText = text[lang].note;
-}
-
-/* Load saved language (default Marathi) */
-const savedLang = localStorage.getItem("lang") || "en";
-setLang(savedLang);
+joinBtn.addEventListener("click", function () {
+  setTimeout(function () {
+    window.location.href = "follow.html";
+  }, 2500);
+});
 </script>
 
 </body>
