@@ -124,6 +124,21 @@ h1{
   </div>
 
 </div>
+  
+<script>
+  const joinBtn = document.getElementById("joinBtn");
+
+  if (joinBtn) {
+    joinBtn.addEventListener("click", function () {
+      // WhatsApp opens via href
+      // Redirect to follow page after 2 seconds
+      setTimeout(function () {
+        window.location.href = "follow.html";
+      }, 2000);
+    });
+  }
+</script>
+
 
 <script>
 /* ===============================
